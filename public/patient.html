@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html>
+	<style>
+	body
+	{
+		background-image: url("https://images.freecreatives.com/wp-content/uploads/2016/03/Wooden-Background-For-Free-Download.jpg");
+		font-family: "Lato", sans-serif;
+		border-radius: 5px;
+	}
+
+	h1
+	{
+		background-image: url("http://www.snapsglobal.com/wp-content/uploads/2016/01/desktop-wallpaper-beautiful-wallpapers-cool-wallpapers-desktop-backgrounds-computer-backgrounds-free-backgrounds-32.jpg");
+		background-position: 45% 70%;
+		box-shadow: 0 4px 4px 0 rgba(0,0,0,0.32),0 2px 10px 0 rgba(0,0,0,0.24);
+		width: 100%;
+		background-color: #f1f1f1;
+		padding: 100px;
+		text-align: left;
+	}
+	.title
+	{
+		text-decoration: none;
+		color: black;
+		text-shadow: 0 1.5px 1.5px #FFFFFF;
+	}
+	.section
+	{
+		border: 1px solid #ccc;
+	}
+	.prescriptions
+	{
+		background-color: #00FF7F;
+		opacity: .75;
+		border-radius: 5px;
+		box-shadow: 0 4px 4px 0 rgba(0,0,0,0.32),0 2px 10px 0 rgba(0,0,0,0.24);
+	}
+	ul li.nostyle {list-style-type: none;}
+	ul li a {text-decoration: none;}
+
+	ul.tab
+	{
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+		background-color: #f1f1f1;
+		border-radius: 5px;
+		box-shadow: 0 4px 4px 0 rgba(0,0,0,0.32),0 2px 10px 0 rgba(0,0,0,0.24);
+	}
+	ul.tab li {float: left;}
+	ul.tab li a {
+		display: inline-block;
+		color: black;
+		text-align: center;
+		padding: 14px 25px;
+		transition: 0.3s;
+		font-size: 17px;
+		border-radius: 5px;
+		box-shadow: 0 1px 1px 0 rgba(0,0,0,0.05),0 1px 1px 0 rgba(0,0,0,0.05);
+	}
+	ul.tab li a:hover {background-color: #E0FFFF;}
+	ul.tab li a.otherday:focus
+	{
+		background-color: #CD5C5C;
+		opacity: .9;
+		box-shadow: 0 4px 4px 0 rgba(0,0,0,0.32),0 2px 10px 0 rgba(0,0,0,0.24);
+	}
+	ul.tab li a.today:focus
+	{
+		text-transform: uppercase;
+		font-weight: bold;
+		background-color: #00FF7F;
+		box-shadow: 0 5px 5px 0 rgba(0,0,0,0.32),0 2px 10px 0 rgba(0,0,0,0.24);
+	}
+	.tabcontent
+	{
+	    display: none;
+		padding: 6px 12px;
+		border-top: none;
+	}
+
+	ul.schedule
+	{
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		border: 1px solid #ccc;
+		background-color: #f1f1f1;
+		border-radius: 10px;
+		box-shadow: 0 4px 4px 0 rgba(0,0,0,0.32),0 2px 10px 0 rgba(0,0,0,0.24);
+		opacity: .9;
+	}
+	.am
+	{
+		background-color: #FFF8DC;
+		color: black;
+	}
+	.pm
+	{
+		background-color: #F0FFFF;
+		color: black;
+	}
+	.num
+	{
+		color: black;
+	}
+	ul.schedule li a.am
+	{
+		display: inline-block;
+		text-align: center;
+		padding: 14px 25px;
+		transition: 0.3s;
+		font-size: 17px;
+	}
+	ul.schedule li a.pm
+	{
+		display: inline-block;
+		color: black;
+		text-align: center;
+		padding: 14px 25px;
+		transition: 0.3s;
+		font-size: 17px;
+	}
+	.pills
+	{
+		background-color: white;
+		opacity: .85;
+		border-radius: 5px;
+		box-shadow: 0 4px 4px 0 rgba(0,0,0,0.32),0 2px 10px 0 rgba(0,0,0,0.24);
+	}
+	.medinfo
+	{
+		display: none;
+		border-radius: 5px;
+		box-shadow: 0 4px 4px 0 rgba(0,0,0,0.32),0 2px 10px 0 rgba(0,0,0,0.24);
+		background-color: #FA8072;
+		padding: 6px 12px;
+		opacity: .9;
+	}
+	</style>
+
+<body onload="openToday()">
+
+<h1> WELCOME ISABEL!</h1>
+
+<div>
+<h2><a href="javascript:void(0)" class="title toggle" onclick="toggle(event, 'prescriptions')">PENDING PRESCRIPTIONS:</a></h2>
+	<ul class="prescriptions">
+		<p>Your prescriptions are all up to date.</p>
+	</ul>
+</div>
+
+<h2><a href="javascript:void(0)" class="title toggle" onclick="toggle_schedule(event)">MEDICATION SCHEDULE:</a></h2>
+<ul class="tab">
+	<li class="nostyle"><a href="javascript:void(0)" class="tablinks" onclick="openDay(event, '0')">Sunday</a></li>
+	<li class="nostyle"><a href="javascript:void(0)" class="tablinks" onclick="openDay(event, '1')">Monday</a></li>
+	<li class="nostyle"><a href="javascript:void(0)" class="tablinks" onclick="openDay(event, '2')">Tuesday</a></li>
+	<li class="nostyle"><a href="javascript:void(0)" class="tablinks" onclick="openDay(event, '3')">Wednesday</a></li>
+	<li class="nostyle"><a href="javascript:void(0)" class="tablinks" onclick="openDay(event, '4')">Thursday</a></li>
+	<li class="nostyle"><a href="javascript:void(0)" class="tablinks" onclick="openDay(event, '5')">Friday</a></li>
+	<li class="nostyle"><a href="javascript:void(0)" class="tablinks" onclick="openDay(event, '6')">Saturday</a></li>
+</ul>
+
+<div class="ampm">
+	<div id="0" class="tabcontent">
+		<h3 class="title">Sunday</h3>
+		<ul class="SunTab schedule">
+		<div class="am">
+		<li><a href="javascript:void(0)" class="am">AM</a>
+			<table class="am">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		<div class="pm">
+		<li><a href="javascript:void(0)" class="pm">PM</a>
+			<table class="pm">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		</ul>
+	</div>
+	<div id="1" class="tabcontent">
+		<h3 class="title">Monday</h3>
+		<ul class="MonTab schedule">
+		<div class="am">
+		<li><a href="javascript:void(0)" class="am">AM</a>
+			<table class="am">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		<div class="pm">
+		<li><a href="javascript:void(0)" class="pm">PM</a>
+			<table class="pm">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		</ul>
+	</div>
+	<div id="2" class="tabcontent">
+		<h3 class="title">Tuesday</h3>
+		<ul class="TuesTab schedule">
+		<div class="am">
+		<li><a href="javascript:void(0)" class="am">AM</a>
+			<table class="am">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		<div class="pm">
+		<li><a href="javascript:void(0)" class="pm">PM</a>
+			<table class="pm">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		</ul>
+	</div>
+	<div id="3" class="tabcontent">
+		<h3 class="title">Wednesday</h3>
+		<ul class="WedTab schedule">
+		<div class="am">
+		<li><a href="javascript:void(0)" class="am">AM</a>
+			<table class="am">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		<div class="pm">
+		<li><a href="javascript:void(0)" class="pm">PM</a>
+			<table class="pm">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil </a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		</ul>
+	</div>
+	<div id="4" class="tabcontent">
+		<h3 class="title">Thursday</h3>
+		<ul class="ThursTab schedule">
+		<div class="am">
+		<li><a href="javascript:void(0)" class="am">AM</a>
+			<table class="am">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		<div class="pm">
+		<li><a href="javascript:void(0)" class="pm">PM</a>
+			<table class="pm">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		</ul>
+	</div>
+	<div id="5" class="tabcontent">
+		<h3 class="title">Friday</h3>
+		<ul class="FriTab schedule">
+		<div class="am">
+		<li><a href="javascript:void(0)" class="am">AM</a>
+			<table class="am">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		<div class="pm">
+		<li><a href="javascript:void(0)" class="pm">PM</a>
+			<table class="pm">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		</ul>
+	</div>
+	<div id="6" class="tabcontent">
+		<h3 class="title">Saturday</h3>
+		<ul class="SatTab schedule">
+		<div class="am">
+		<li><a href="javascript:void(0)" class="am">AM</a>
+			<table class="am">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		<div class="pm">
+		<li><a href="javascript:void(0)" class="pm">PM</a>
+			<table class="pm">
+			<tr><td><a href="javascript:void(0)" class="num 12">12:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 12">12:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 1">1:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 2">2:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 3">3:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 4">4:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 5">5:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:00</a></td><td><a href="#naproxen" onclick="openDescription(event, 'naproxen')">Naproxen</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 6">6:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 7">7:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:00</a></td><td><a href="#dayquil" onclick="openDescription(event, 'dayquil')">Dayquil</a></td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 8">8:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 9">9:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 10">10:30</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:00</a></td><td> </td></tr>
+			<tr><td><a href="javascript:void(0)" class="num 11">11:30</a></td><td> </td></tr>
+			</table>
+		</li>
+		</div>
+		</ul>
+	</div>
+</div>
+
+<div>
+<h2><a href="#pills" class="title toggle" onclick="toggle_meds(event, 'medinfo')">MEDICATIONS:</a></h2>
+<ul id= "pills" class="pills">
+	<li class="nostyle"><a href="#dayquil" class="medlinks" onclick="openDescription(event, 'dayquil')">DayQuil</a></li>
+	<li class="nostyle"><a href="#naproxen" class="medlinks" onclick="openDescription(event, 'naproxen')">Naproxen</a></li>
+</ul>
+</div>
+
+<div class="medications">
+	<div id="dayquil" name="dayquil" class="medinfo">
+		<ul>
+			<li class="nostyle"><b>DayQuil</b></li>
+			<li class="nostyle">Reason: Common Cold</li>
+			<li class="nostyle">Amount: 30mL</li>
+			<li class="nostyle">Frequency: Every 4 hours</li>
+			<li class="nostyle">Refills: N/A</li>
+			<li class="nostyle">Instructions: Ingest orally, with meals.</li>
+			<li class="nostyle">Common Side Effects: Dizzinessm excitability, headache, nausea, nervousness or anxiety, trouble sleeping, weakness.</li>
+			<p></p>
+			<li class="nostyle">WARNING: Seek medical attention right away if you experience any of the following:
+				<ul>
+					<li>severe allergic reactions (rash, hives, difficulty breathing, tightness in the chest, swelling of the mouth, face, lips or tongue)</li>
+					<li>difficulty urinating</li>
+					<li>fast or irregular heartbeat</li>
+					<li>hallucinations</li>
+					<li>seizures</li>
+					<li>severe dizziness</li>
+					<li>lightheadedness or headache</li>
+					<li>stomach pain</li>
+					<li>tremor</li>
+					<li>yellowing of skin or eyes</li>
+				</ul>
+		</ul>
+	</div>
+	<div id="naproxen" name="naproxen" class="medinfo">
+		<ul>
+			<li class="nostyle"><b>Naproxen</b></li>
+			<li class="nostyle">Reason: Back pain</li>
+			<li class="nostyle">Amount: 500mg (2 pills)</li>
+			<li class="nostyle">Frequency: Twice a day</li>
+			<li class="nostyle">Refills: N/A</li>
+			<li class="nostyle">Instructions: Ingest orally, with water.</li>
+		</ul>
+	</div>
+</div>
+
+<script>
+	function openToday()
+	{
+		var d;
+		var today;
+
+		d = new Date();
+		today = d.getDay();
+		document.getElementById(today).classList.add("today");
+		document.getElementById(today).style.display = "block";
+	}
+
+	function openDay(evt, day)
+	{
+		var i, tabcontent, tablinks, d, n;
+
+		d = new Date();
+		n = d.getDay();
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++)
+		{
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++)
+		{
+			tablinks[i].classList.remove("today");
+			tablinks[i].classList.remove("otherday");
+		}
+		if (day == n)
+			evt.currentTarget.classList.add("today");
+		else
+			evt.currentTarget.classList.add("otherday");
+		document.getElementById(day).style.display = "block";
+	}
+
+	function openDescription(evt, id)
+	{
+		var medinfo = document.getElementsByClassName("medinfo");
+		for (i = 0; i < medinfo.length; i++)
+		{
+			medinfo[i].style.display = "none";
+		}
+		var medlinks = document.getElementsByClassName("medlinks");
+		for (i = 0; i < medlinks.length; i++)
+		{
+			medlinks[i].classList.remove("selected");
+		}
+		evt.currentTarget.classList.add("selected");
+		document.getElementById(id).style.display = "block";
+	}
+
+	function hide(str)
+	{
+		var elements = document.getElementsByClassName(str);
+		for(i = 0; i < elements.length; i++)
+		{
+			elements[i].style.display = "none";
+		}
+	}
+
+	function show(str)
+	{
+		var elements = document.getElementsByClassName(str);
+		for(i = 0; i < elements.length; i++)
+		{
+			elements[i].style.display = "block";
+		}
+	}
+
+	function toggle_schedule(evt)
+	{
+		hide("tabcontent");
+		hide("tablinks");
+		if (evt.currentTarget.classList.contains("toggle"))
+			evt.currentTarget.classList.remove("toggle");
+		else
+		{
+			evt.currentTarget.classList.add("toggle");
+			show("tablinks");
+			openToday();
+		}
+	}
+
+	function toggle_meds(evt, str)
+	{
+		hide(str);
+		hide("medlinks");
+		if (evt.currentTarget.classList.contains("toggle"))
+			evt.currentTarget.classList.remove("toggle");
+		else
+		{
+			evt.currentTarget.classList.add("toggle");
+			show("medlinks");
+			show(str);
+		}
+	}
+
+	function toggle(evt, str)
+	{
+		hide(str);
+		if (evt.currentTarget.classList.contains("toggle"))
+			evt.currentTarget.classList.remove("toggle");
+		else
+		{
+			evt.currentTarget.classList.add("toggle");
+			show(str);
+		}
+	}
+</script>
+
+</body>
+</html>
