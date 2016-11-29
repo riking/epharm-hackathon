@@ -2,3 +2,9 @@
 source "https://rubygems.org"
 
 gem "rails"
+gem "devise"
+gem "pg"
+
+group :development do
+  gem "listen"
+end
